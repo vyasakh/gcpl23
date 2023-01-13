@@ -12,7 +12,6 @@ persist_with: 0_vysakh_thelook_default_datagroup
 
 explore: all_types {}
 
-explore: connection_reg_r3 {}
 
 explore: order_items {
   join: orders {
