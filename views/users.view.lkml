@@ -62,7 +62,10 @@ dimension: tenant_id {
     }
   }}
 
-  dimension: names {
+
+
+
+  dimension: namess {
     label: "{%if users.id._value != 'No Value~~~-2~~~No Value' %} tests {% endif %}"
     type: string
     sql: ${TABLE}.name ;;
