@@ -25,8 +25,22 @@ view: order_items {
     sql: ${TABLE}.sku_num ;;
   }
 
+
+
   measure: count {
     type: count
     drill_fields: [id, orders.id]
+  }
+  measure: total {
+    type: sum
+    sql: ${id} ;;
+  }
+   measure: percentage {
+     type: percent_of_total
+    sql: ${count}/${total}*100;;
+   }
+  measure: test_neg {
+    type: number
+    sql: ${count}*-1000 ;;
   }
 }

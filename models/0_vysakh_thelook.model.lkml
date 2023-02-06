@@ -35,4 +35,10 @@ explore: orders {
   }
 }
 
-explore: users {}
+explore: users {
+  join: orders {
+    type: left_outer
+    sql_on: ${orders.id} = ${users.id} ;;
+    relationship: many_to_one
+  }
+}

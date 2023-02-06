@@ -28,6 +28,7 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+
   dimension: epoch_at {
     type: number
     sql: ${TABLE}.epoch_at ;;
