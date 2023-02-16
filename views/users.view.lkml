@@ -39,6 +39,7 @@ view: users {
     sql: ${TABLE}.name ;;
   }
 
+
   dimension: yyyymmdd_at {
     type: number
     sql: ${TABLE}.yyyymmdd_at ;;

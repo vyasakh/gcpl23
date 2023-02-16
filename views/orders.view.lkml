@@ -22,17 +22,21 @@ view: orders {
     ]
     sql: ${TABLE}.created_at ;;
   }
-
+dimension_group: test {
+  type: time
+  convert_tz: no
+  sql:${TABLE}.created_at   ;;
+}
   dimension_group: search_created {
     type: time
-    timeframes: [raw, time, hour, date, week, month]
+    timeframes: [raw, time, hour, date, week, month,fiscal_month_num]
     sql: ${TABLE}.created_at ;;
   }
 
   dimension_group: search_for_local_time {
     type: time
 
-    timeframes: [raw, time, hour, date, week, month]
+    timeframes: [raw, time, hour, date, week, month,]
     sql: ${TABLE}.created_at ;;
     }
 
@@ -71,7 +75,15 @@ view: orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
-  }
+  html:  {% if value > 10 %}
+      <font color="darkgreen">{{ rendered_value }}</font>
+    {% elsif value > 11 %}
+      <font color="goldenrod">{{ rendered_value }}</font>
+    {% else %}
+      <font color="darkred">{{ rendered_value }}</font>
+    {% endif %} ;;
+}
+
 
   dimension: user_id {
     type: number

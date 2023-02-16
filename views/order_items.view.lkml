@@ -1,6 +1,6 @@
 view: order_items {
   sql_table_name: looker_test.order_items ;;
-  drill_fields: [id]
+  #drill_fields: [id]
   suggestions: no
 
   dimension: id {
@@ -31,6 +31,7 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id]
   }
+
   measure: total {
     type: sum
     sql: ${id} ;;
@@ -41,6 +42,8 @@ view: order_items {
    }
   measure: test_neg {
     type: number
-    sql: ${count}*-1000 ;;
+    sql: ${count}*-1 ;;
+    value_format: "#;#"
+    drill_fields:  [orders.id]
   }
 }
