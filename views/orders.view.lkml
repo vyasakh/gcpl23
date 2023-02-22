@@ -50,9 +50,15 @@ view: orders {
 
     type: string
 
-    sql: 'https://www.w3schools.com/html/mov_bbb.mp4' ;;
+    sql: 'https://www.kapwing.com/videos/63f5f9c8eaa5dc001728f197' ;;
 
     html: <video width="290" height="130" controls preload="none"> <controls> <source src="{{ value }}" type="video/mp4"> </video> ;;
 
+  }
+
+  measure: looker_image {
+    type: string
+    sql: 'https://www.linkpicture.com/q/ezgif.com-video-to-gif_1.gif';;
+    html: <img src="https://www.linkpicture.com/q/ezgif.com-video-to-gif_1.gif" /> ;;
   }
 }
