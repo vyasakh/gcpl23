@@ -80,4 +80,5 @@ dimension: tenant_id {
     type: count
     drill_fields: [id, name, orders.count]
   }
+
 }

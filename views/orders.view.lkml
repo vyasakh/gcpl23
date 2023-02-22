@@ -45,4 +45,14 @@ view: orders {
     type: count
     drill_fields: [id, users.id, users.name, order_items.count]
   }
+
+ measure: video {
+
+    type: string
+
+    sql: 'https://www.w3schools.com/html/mov_bbb.mp4' ;;
+
+    html: <video width="290" height="130" controls preload="none"> <controls> <source src="{{ value }}" type="video/mp4"> </video> ;;
+
+  }
 }
