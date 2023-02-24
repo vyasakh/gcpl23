@@ -33,16 +33,20 @@ view: orders {
     label: "order_status"
     type: string
     sql: ${TABLE}.status ;;
+
   }
 
-  dimension: user_id {
-    type: number
-    # hidden: yes
-    sql: ${TABLE}.user_id ;;
-  }
 
-  measure: count {
-    type: count
-    drill_fields: [id, users.id, users.name, order_items.count]
-  }
+dimension: user_id {
+  type: number
+  # hidden: yes
+  sql: ${TABLE}.user_id ;;
+}
+
+measure: count {
+  type: count
+  drill_fields: [id, users.id, users.name, order_items.count]
+}
+
+
 }

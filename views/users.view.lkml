@@ -65,10 +65,10 @@ dimension: tenant_id {
 
 
 
-  dimension: namess {
-    label: "{%if users.id._value != 'No Value~~~-2~~~No Value' %} tests {% endif %}"
-    type: string
-    sql: ${TABLE}.name ;;
+
+  dimension: hire{
+    type: yesno
+    sql: ${created_date} = ${created_month} ;;
   }
 
   dimension: yyyymmdd_at {
@@ -76,8 +76,49 @@ dimension: tenant_id {
     sql: ${TABLE}.yyyymmdd_at ;;
   }
 
+
+
   measure: count {
     type: count
-    drill_fields: [id, name, orders.count]
+    drill_fields: [id, name]
   }
+
+  measure: h1{
+    type: count_distinct
+    sql: ${id} ;;
+    filters: [hire: "yes"]
+    drill_fields: [detail*]
+  }
+
+  measure: h2{
+    type: count_distinct
+    sql: ${id} ;;
+    drill_fields: [detail*]
+  }
+measure: h3{
+  type: number
+  sql: ${h2} - ${h1} ;;
+  drill_fields: [detail*]
+}
+
+
+  measure: sum {
+    type: sum
+    sql: ${id} ;;
+    html: {% if value < 0 %}
+          <font style="color: #990000"> ▼ ( {{ rendered_value | times: -1 | round: 0}} ) </font>
+         {% elsif value > 0 %}
+         <font style="color: #009900"> ▲ {{ rendered_value | round: 0}}  </font>
+          {% else %}
+          <font style="color: #000000"> {{ rendered_value | round: 0}} </font>
+          {% endif %} ;;
+
+  }
+
+  set: detail{
+   fields: [id,name]
+
+  }
+
+
 }
