@@ -11,3 +11,6 @@ localization_settings: {
   default_locale: en
   localization_level: permissive
 }
+constant: incoming_exp_date {
+  value: "<p>{{rendered_value}}</p>"
+}
