@@ -22,38 +22,23 @@ view: orders {
     ]
     sql: ${TABLE}.created_at ;;
   }
-  dimension: random_value {
-
-    label: "random value with html pointers"
-
-    sql: rand() ;;
-
+  measure: ResolvedTargetGoalIndicator {
+    type: number
+    sql: ((0.333*${count}));;
+    value_format: "0"
     html:
-
-    {% if value > 0.5 %}
-
-      {% assign indicator = "green,▲" | split: ',' %}
-
-      {% elsif value < 0.5 %}
-
-      {% assign indicator = "red,▼" | split: ',' %}
-
-      {% else %}
-
-      {% assign indicator = "black,▬"] | split: ',' %}
-
-      {% endif %}
-
-      <font color="{{indicator[0]}}">
-
-      {% if value == 99999.12345 %} &infin
-
-      {% else %}{{rendered_value}}
-
-      {% endif %} {{indicator[1]}}
-
-      </font> ;;
-
+    {% if value > 0 %}
+    {% assign indicator = "green,▲" | split: ',' %}
+    {% elsif value < 0 %}
+    {% assign indicator = "red,▼" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,▬" | split: ',' %}
+    {% endif %}
+    <font color="{{indicator[0]}}">
+    {% if value == 99999.12345 %} &infin
+    {% else %}{{rendered_value}}
+    {% endif %} {{indicator[1]}}
+    </font> ;;
   }
 
   dimension: order_amount {
