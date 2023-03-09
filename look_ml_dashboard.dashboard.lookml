@@ -2,6 +2,7 @@
   title: new_dashboard
   layout: newspaper
   preferred_viewer: dashboards-next
+  crossfilter_enabled: true
   description: ''
   preferred_slug: jHUlTfOyzUMq0PZUwzQbxG
   elements:
@@ -12,8 +13,7 @@
     type: table
     fields: [users.gender, users.first_name, users.count, inventory_items.count, order_items.count,
       orders.count, users.average_age]
-    filters:
-      users.gender: "-NULL"
+    filters: {}
     sorts: [users.gender, users.first_name desc]
     subtotals: [users.gender]
     limit: 5000
@@ -39,8 +39,26 @@
     conditional_formatting_include_nulls: false
     hidden_pivots: {}
     defaults_version: 1
-    listen: {}
+    listen:
+      Gender: users.gender
     row: 0
     col: 0
     width: 24
     height: 9
+  filters:
+  - name: Gender
+    title: Gender
+    type: field_filter
+    default_value: f,m,male
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options:
+      - f
+      - m
+    model: agustin_thelook
+    explore: order_items
+    listens_to_filters: []
+    field: users.gender
