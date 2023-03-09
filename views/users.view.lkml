@@ -36,7 +36,8 @@ view: users {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-  }
+    html: <a href="https://gcpl230.cloud.looker.com/dashboards/67?ID=0&Name={{ _filters['orders.created_date'] | url_encode }}"/>
+}
 
 dimension: tenant_id {
   label: "tenant"

@@ -20,6 +20,7 @@ view: orders {
       quarter,
       year
     ]
+    datatype: datetime
     sql: ${TABLE}.created_at ;;
   }
 
@@ -27,6 +28,11 @@ view: orders {
     label: "amount"
     type: number
     sql: ${TABLE}.order_amount ;;
+    link: {
+      label: "Filter on {{value}}"
+      url: "/dashboards/2494?Date={{ _filters[''] | url_encode
+      }}&Trace+ID={{value}}"
+    }
   }
 
   dimension: status {
