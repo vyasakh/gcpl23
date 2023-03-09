@@ -18,6 +18,7 @@ view: orders {
       week,
       month,
       quarter,
+      day_of_week_index,
       year
     ]
     sql: ${TABLE}.created_at ;;

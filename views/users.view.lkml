@@ -1,4 +1,5 @@
 view: users {
+  derived_table: {}
   sql_table_name: looker_test.users ;;
   drill_fields: [id]
   suggestions: no
@@ -26,7 +27,11 @@ view: users {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    group_label: "date created"
+    group_item_label: "create"
   }
+
+
 
   dimension: epoch_at {
     type: number
@@ -80,5 +85,12 @@ dimension: tenant_id {
     type: count
     drill_fields: [id, name, orders.count]
   }
+
+  measure: avg{
+    type: average
+    sql: count(distinct ${TABLE}.name) ;;
+  }
+
+
 
 }
