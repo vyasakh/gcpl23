@@ -25,7 +25,12 @@ view: users {
       quarter,
       year
     ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.created_at ;;
+    label: "Lease Expiry"
+    hidden: no
+    html: @{incoming_exp_date};;
   }
 
   dimension: epoch_at {
@@ -64,7 +69,7 @@ dimension: tenant_id {
   }}
 
 
-
+#
 
   dimension: namess {
     label: "{%if users.id._value != 'No Value~~~-2~~~No Value' %} tests {% endif %}"
@@ -81,4 +86,11 @@ dimension: tenant_id {
     type: count
     drill_fields: [id, name, orders.count]
   }
+  measure: sum {
+    type: sum
+   # sql_distinct_key: ${age} ;;
+    sql: ${age} ;;
+  }
+
+
 }
