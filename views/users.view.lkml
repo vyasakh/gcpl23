@@ -26,9 +26,17 @@ view: users {
       quarter,
       year
     ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.created_at ;;
+<<<<<<< HEAD
     group_label: "date created"
     group_item_label: "create"
+=======
+    label: "Lease Expiry"
+    hidden: no
+    html: @{incoming_exp_date};;
+>>>>>>> branch 'master' of https://github.com/vyasakh/gcpl23
   }
 
 
@@ -41,7 +49,8 @@ view: users {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-  }
+    html: <a href="https://gcpl230.cloud.looker.com/dashboards/67?ID=0&Name={{ _filters['orders.created_date'] | url_encode }}"/>
+}
 
 dimension: tenant_id {
   label: "tenant"
@@ -68,7 +77,7 @@ dimension: tenant_id {
   }}
 
 
-
+#
 
   dimension: namess {
     label: "{%if users.id._value != 'No Value~~~-2~~~No Value' %} tests {% endif %}"
@@ -85,6 +94,12 @@ dimension: tenant_id {
     type: count
     drill_fields: [id, name, orders.count]
   }
+  measure: sum {
+    type: sum
+   # sql_distinct_key: ${age} ;;
+    sql: ${age} ;;
+  }
+
 
   measure: avg{
     type: average

@@ -29,4 +29,12 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id]
   }
+  measure: test{
+    type: sum
+    group_label: "Invoice Detail"
+    value_format_name: decimal_0
+    sql: NULLIF(${TABLE}.amount,0);;
+
+
+  }
 }

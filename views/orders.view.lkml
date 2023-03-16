@@ -21,13 +21,37 @@ view: orders {
       day_of_week_index,
       year
     ]
+    datatype: datetime
     sql: ${TABLE}.created_at ;;
+  }
+  measure: ResolvedTargetGoalIndicator {
+    type: number
+    sql: ((0.333*${count}));;
+    value_format: "0"
+    html:
+    {% if value > 0 %}
+    {% assign indicator = "green,▲" | split: ',' %}
+    {% elsif value < 0 %}
+    {% assign indicator = "red,▼" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,▬" | split: ',' %}
+    {% endif %}
+    <font color="{{indicator[0]}}">
+    {% if value == 99999.12345 %} &infin
+    {% else %}{{rendered_value}}
+    {% endif %} {{indicator[1]}}
+    </font> ;;
   }
 
   dimension: order_amount {
     label: "amount"
     type: number
     sql: ${TABLE}.order_amount ;;
+    link: {
+      label: "Filter on {{value}}"
+      url: "/dashboards/2494?Date={{ _filters[''] | url_encode
+      }}&Trace+ID={{value}}"
+    }
   }
 
   dimension: status {
