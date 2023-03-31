@@ -29,16 +29,12 @@ view: users {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.created_at ;;
-<<<<<<< HEAD
     group_label: "date created"
     group_item_label: "create"
-=======
     label: "Lease Expiry"
     hidden: no
     html: @{incoming_exp_date};;
->>>>>>> branch 'master' of https://github.com/vyasakh/gcpl23
   }
-
 
 
   dimension: epoch_at {
